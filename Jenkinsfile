@@ -37,7 +37,7 @@ pipeline
 
                 sh "jar cfe calculator.jar TotalCalculator *.class"
 
-                sh "curl -v --user 'admin:admin' --upload-file ./target/*.jar http://nexus:8081/repository/my-raw/"
+                sh "curl -v --user 'admin:admin' --upload-file calculator.jar http://nexus:8081/repository/my-raw/"
 
             }​​
 
