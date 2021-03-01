@@ -1,17 +1,12 @@
 pipeline
-
 {​​
 
     agent {​​
-
         label "mvn"
-
     }​​
 
-    parameters
-
-    {​​
-
+    parameters{
+   ​​
         // Tem que se ir ao Jenkins > Configure > This project is parameterized. 
 
         string(name: 'DOCKER_IMAGE_NAME', defaultValue: 'image_name', description: 'Docker image name')
@@ -22,37 +17,11 @@ pipeline
 
     }​​
 
+     stages {​​
 
+        stage('Stage docker build') {​​
 
- 
-
-     stages
-
-    {​​
-
-        stage ('Stage maven')
-
-        {​​
-
-            steps
-
-            {​​
-
-                sh 'mvn clean package'
-
-            }​​
-
-        }​​
-
-  
-
-        stage('Stage docker build')
-
-        {​​
-
-            steps
-
-            {​​
+            steps {​​
 
                 sh "docker rmi -f ${​​DOCKER_IMAGE_NAME}​​"
 
@@ -74,44 +43,14 @@ pipeline
 
         }​​
 
- 
-
-        stage('Stage docker run')
-
-        {​​
-
-            steps
-
-            {​​
-
-                sh "docker rm -f ${​​DOCKER_CONTAINER_NAME}​​"
-
-                sh "docker run -d -p ${​​DOCKER_PORT}​​:8080 --name ${​​DOCKER_CONTAINER_NAME}​​ ${​​DOCKER_IMAGE_NAME}​​"
-
-            }​​
-
-        }​​
-
- 
 
         // Apaga os dados do workspace.
 
-        stage('Stage D - Clean up resources')
-
-        {​​
-
+        stage('Stage D - Clean up resources') {​​
             steps
-
             {​​
-
                 cleanWs()
-
             }​​
-
         }​​
-
-        
-
     }​​
-
 }​​
