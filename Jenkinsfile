@@ -1,9 +1,7 @@
 pipeline
 {​​
 
-    agent {​​
-        label "mvn"
-    }​​
+    agent any
 
     parameters{
    ​​
