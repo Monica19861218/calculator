@@ -18,7 +18,7 @@ pipeline {
 
         stage("Store artifact on Nexus"){
             steps{
-                withCredentials([usernameColonPassword(credentialsId: 'nexus-user-credentials', variable: 'USERPASS')]) {
+                withCredentials([usernameColonPassword(credentialsId: 'curl-nexus-user-credentials', variable: 'USERPASS')]) {
                     sh 'curl -v- u "$USERPASS" --upload-file /var/jenkins_home/workspace/calculator/"$JAR_NAME".jar http://localhost:8081/repository/artifact-repo/'
                 }
             }
