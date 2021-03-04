@@ -33,9 +33,9 @@ pipeline {
         stage("Push Image to Nexus"){
             steps{
                 withCredentials([usernamePassword(credentialsId: 'nexus', passwordVariable: 'PASSWORD', usernameVariable: 'USERNAME')]) {
-                sh 'docker login -u "$USERNAME" -p "$PASSWORD" localhost:8082'
-                sh 'docker tag "$IMAGE_NAME":v1.0 localhost:8082/"$IMAGE_NAME":V1.0'
-                sh 'docker push localhost:8082/"$IMAGE_NAME":v1.0'
+                sh 'docker login -u "$USERNAME" -p "$PASSWORD" nexus:8082'
+                sh 'docker tag "$IMAGE_NAME":v1.0 nexus:8082/"$IMAGE_NAME":V1.0'
+                sh 'docker push nexus:8082/"$IMAGE_NAME":v1.0'
                 }
             }
         }
