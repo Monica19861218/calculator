@@ -2,6 +2,8 @@ pipeline {
 
     agent any
 
+    def scannerHome = tool 'sonarqube';
+
     parameters{
         string(name:'IMAGE_NAME', defaultValue: 'java-calculator', description: 'Docker image name')
         string(name:'JAR_NAME', defaultValue: 'calculadora', description: '.jar file name')
@@ -9,14 +11,14 @@ pipeline {
 
     stages{
 
-        stage("SonarQube Analysis"){
-            def scannerHome = tool 'sonarqube';             
-            withSonarQubeEnv('sonarqube') {
-            sh 'mvn sonar:sonar \
-                -Dsonar.projectKey=calculator \
-                -Dsonar.host.url=http://localhost:9000 \
-                -Dsonar.login=jenkins'
-                
+        stage("SonarQube Analysis"){            
+            steps{                
+                withSonarQubeEnv('sonarqube') {
+                sh 'mvn sonar:sonar \
+                    -Dsonar.projectKey=calculator \
+                    -Dsonar.host.url=http://localhost:9000 \
+                    -Dsonar.login=jenkins'
+                }
             }
         }
         
