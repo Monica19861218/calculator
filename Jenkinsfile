@@ -12,9 +12,7 @@ pipeline {
         stage("SonarQube Analysis"){            
             steps{                
                 withSonarQubeEnv('sonarqube') {
-                -Dsonar.projectKey=calculator \
-                -Dsonar.host.url=http://localhost:9000 \
-                -Dsonar.login=jenkins
+                -Dsonar.projectKey=calculator -Dsonar.host.url=http://sonarqube:9000/ -Dsonar.login=jenkins
                 }
             }
         }
