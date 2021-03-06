@@ -19,7 +19,7 @@ pipeline {
                     -D sonar.projectKey=calculator \
                     -D sonar.java.binaries=/var/jenkins_home/workspace/calculator \
                     -D sonar.java.source=11 \
-                    -Dsonar.host.url=http://localhost:9000'
+                    -D sonar.host.url=http://localhost:9000'
                     }
                 }
             }
