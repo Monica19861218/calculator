@@ -11,7 +11,7 @@ pipeline {
 
         stage("SonarQube Analysis"){            
             steps{                
-                withSonarQubeEnv(credentialsId: 'sonarqube') {
+                withSonarQubeEnv('sonarqube') {
                 sh '-Dsonar.projectKey=calculator \
                    -Dsonar.host.url=http://sonarqube:9000 \
                    -Dsonar.login=0df84b1f7fb374f40ec3a08c052ff53a43a3a81d'
