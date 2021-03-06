@@ -10,14 +10,13 @@ pipeline {
     stages{
 
         stage("SonarQube Analysis"){
-            def scannerHome = tool 'sonarqube';
-            steps{                
-                withSonarQubeEnv('sonarqube') {
-                sh 'mvn sonar:sonar \
-                    -Dsonar.projectKey=calculator \
-                    -Dsonar.host.url=http://localhost:9000 \
-                    -Dsonar.login=jenkins'
-                }
+            def scannerHome = tool 'sonarqube';             
+            withSonarQubeEnv('sonarqube') {
+            sh 'mvn sonar:sonar \
+                -Dsonar.projectKey=calculator \
+                -Dsonar.host.url=http://localhost:9000 \
+                -Dsonar.login=jenkins'
+                
             }
         }
         
