@@ -2,7 +2,7 @@ pipeline {
 
     agent any
 
-    def scannerHome = tool 'sonarqube';
+    scannerHome = tool 'sonarqube';
 
     parameters{
         string(name:'IMAGE_NAME', defaultValue: 'java-calculator', description: 'Docker image name')
