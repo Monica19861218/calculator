@@ -1,6 +1,8 @@
 pipeline {
 
-    agent any
+    agent{
+        label 'mvn'
+    }
 
     parameters{
         string(name:'IMAGE_NAME', defaultValue: 'java-calculator', description: 'Docker image name')
@@ -11,8 +13,8 @@ pipeline {
 
         stage("SonarQube Analysis"){
             steps{
-                withSonarQubeEnv('sonarqube'){
-                sh 'mvn clean package sonar:sonar -Dsonar.host.url=http://localhost:9000'
+                withSonarQubeEnv('sonarqube') {
+                sh 'mvn clean package sonar:sonar -Dsonar.host.url=http://sonarqube:9000'
                 }
             }
         }
