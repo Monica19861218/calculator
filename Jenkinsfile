@@ -11,10 +11,9 @@ pipeline {
 
         stage("SonarQube Analysis"){
             steps{
-                sh 'mvn sonar:sonar \
-                   -Dsonar.projectKey=calculator \
-                   -Dsonar.host.url=http://localhost:9000 \
-                   -Dsonar.login=4309b2c9be9b4aedcb38bff631db7a300b84d723'
+                withSonarQubeEnv {
+                    sh 'mvn clean package sonar:sonar -Dsonar.host.url=http://localhost:9000'
+                }   
             }
         }
         
