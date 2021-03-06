@@ -11,8 +11,12 @@ pipeline {
 
         stage("SonarQube Analysis"){
             steps{
+                def scannerHome = tool 'sonarqube';
                 withSonarQubeEnv('sonarqube') {
-                sh '-Dsonar.host.url=http://localhost:9000'
+                sh 'mvn sonar:sonar \
+                    -Dsonar.projectKey=calculator \
+                    -Dsonar.host.url=http://localhost:9000 \
+                    -Dsonar.login=jenkins'
                 }
             }
         }
