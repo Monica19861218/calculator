@@ -1,6 +1,8 @@
 pipeline {
 
-    agent any
+    agent{
+        label 'mvn'
+    }
 
     parameters{
         string(name:'IMAGE_NAME', defaultValue: 'java-calculator', description: 'Docker image name')
