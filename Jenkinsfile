@@ -1,8 +1,6 @@
 pipeline {
 
-    agent{
-        label 'mvn'
-    }
+    agent any
 
     parameters{
         string(name:'IMAGE_NAME', defaultValue: 'java-calculator', description: 'Docker image name')
@@ -14,7 +12,7 @@ pipeline {
         stage("SonarQube Analysis"){
             steps{
                 withSonarQubeEnv('sonarqube') {
-                sh '-Dsonar.host.url=http://sonarqube:9000'
+                sh './gradlew sonarqube'
                 }
             }
         }
