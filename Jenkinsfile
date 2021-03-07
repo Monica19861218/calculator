@@ -15,8 +15,7 @@ pipeline {
                     def scannerhome = tool 'Sonar-Scanner';       
                     withSonarQubeEnv('sonarqube-server') {
                     sh """${scannerhome}/bin/sonar-runner \
-                    -D sonar.login=admin \
-                    -D sonar.password=sonaradmin \
+                    -D sonar.login=1a7946d402e9e7f2668a7b5ead2d2fead9134cb1 \
                     -D sonar.projectKey=calculator \
                     -D sonar.java.binaries=/var/jenkins_home/workspace/calculator \
                     -D sonar.java.source=11 \
