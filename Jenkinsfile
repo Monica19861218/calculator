@@ -14,7 +14,7 @@ pipeline {
                 script{    
                     def scannerhome = tool 'Sonar-Scanner';       
                     withSonarQubeEnv('sonarqube-server') {
-                    sh """${scannerhome}/bin/sonar-runner \
+                    sh """${scannerhome}/bin/sonar-scanner \
                     -D sonar.login=1a7946d402e9e7f2668a7b5ead2d2fead9134cb1 \
                     -D sonar.projectKey=calculator \
                     -D sonar.java.binaries=/var/jenkins_home/workspace/calculator \
